@@ -1,6 +1,9 @@
-import createList from "./components/creatList.js";
+import createList from "./components/createList.js";
+import { saveToStorage, getFromStorage } from "./utils/storage.js";
+import { listKey } from "./settings.js";
 
-let todos = [];
+let todos = getFromStorage(listKey);
+createList(todos);
 
 const input = document.querySelector("input");
 const button = document.querySelector("#button");
@@ -12,13 +15,13 @@ function addItem() {
     const itemValue = input.value.trim();
 
     if (itemValue.length >= 1) {
-        const newItem = { id: Date.now(), name: itemValue, isComplete: false };
-        console.log(input.value);
+        const newItem = { id: Date.now(), name: itemValue };
+        //  console.log(input.value); */
         todos.push(newItem);
-        console.log(todos);
+        // console.log(todos); 
 
         createList(todos);
-
+        saveToStorage(listKey, todos);
     }
 }
 

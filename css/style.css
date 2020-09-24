@@ -1,12 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: rgb(25, 28, 31);
+    background-color: rgb(26, 32, 37);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
 }
 
 ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 1em;
 }
 
 li {
     color: white;
+    background-color: rgb(4, 68, 110);
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+input[type=text] {
+    background: transparent;
+    border: none;
+    width: 90%;
+    padding: 0.5rem;
+    color: white;
+}
+
+span.checked {
+    opacity: 50%;
 }
