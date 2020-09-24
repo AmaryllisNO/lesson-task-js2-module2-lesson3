@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(25, 28, 31);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    color: white;
+}
