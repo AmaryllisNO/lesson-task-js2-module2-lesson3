@@ -5,8 +5,6 @@ export default function createList(todos) {
 
     const listConainer = document.querySelector(".list-container");
 
-    console.log(todos);
-
     listConainer.innerHTML = "";
 
     todos.forEach(function (item) {
@@ -17,26 +15,8 @@ export default function createList(todos) {
             checked = "checked";
         }
 
-        listConainer.innerHTML += `<li><span class="${checked}"> <input type="text" value="${item.name}" data-id="${item.id}"><input ${checked} type="checkbox" data-id="${item.id}"/></span></li>`
+        listConainer.innerHTML += `<li><span class="${checked}"><input type="text" value="${item.name}" data-id="${item.id}"><input ${checked} type="checkbox" data-id="${item.id}"/></span></li>`
     });
-
-    const checkboxes = document.querySelectorAll("li input");
-
-    checkboxes.forEach(function (box) {
-        box.addEventListener("click", toggleComplete);
-    })
-
-    function toggleComplete() {
-        const id = event.target.dataset.id;
-        const isComplete = event.target.checked;
-
-        // console.log(isComplete);
-
-        const updatedList = updateList(todos, id, isComplete);
-        saveToStorage(listKey, updatedList);
-        createList(updatedList);
-    }
-
 
     const textboxes = document.querySelectorAll("li input[type=text]");
 
@@ -52,13 +32,27 @@ export default function createList(todos) {
         console.log(updatedList);
 
     }
+
+    const checkboxes = document.querySelectorAll("li input[type=checkbox]");
+
+    checkboxes.forEach(function (box) {
+        box.addEventListener("click", toggleComplete);
+    })
+
+    function toggleComplete() {
+        const id = event.target.dataset.id;
+        const isComplete = event.target.checked;
+
+        // console.log(isComplete);
+
+        const updatedList = updateList(todos, id, isComplete);
+        saveToStorage(listKey, updatedList);
+        createList(updatedList);
+    }
 }
 
 
 function updateList(todos, id, isComplete) {
-    console.log("todos:", todos);
-    console.log("id:", id);
-    console.log("isComplete:", isComplete);
 
     const thisItemIndex = todos.findIndex(function (item) {
         if (item.id === parseInt(id)) {
